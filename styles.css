@@ -7,7 +7,7 @@ body {
     width: 95vw;
     margin: 0 auto;
     background-image: url("images/sacgeom-overlap.png");
-    background-size: 5%; 
+    background-size: 4.5%; 
     background-repeat: repeat;
 }
 
@@ -23,3 +23,32 @@ body {
     
 }
 
+#start-button {
+    margin:auto;
+    display:block;
+    background: #edd8b4;
+    background-image: -webkit-linear-gradient(top, #edd8b4, #9e7838);
+    background-image: -moz-linear-gradient(top, #edd8b4, #9e7838);
+    background-image: -ms-linear-gradient(top, #edd8b4, #9e7838);
+    background-image: -o-linear-gradient(top, #edd8b4, #9e7838);
+    background-image: linear-gradient(to bottom, #edd8b4, #9e7838);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    text-shadow: 1px 1px 3px #c6b28f;
+    color: #474239;
+    font-size: 35px;
+    padding: 8px 20px 12px 20px;
+    text-decoration: none;
+}
+
+
+  
+#start-but:hover {
+    background: #9e7838;
+    text-decoration: none;
+  }
+
+.gameControls:p {
+    color: #474239;
+}

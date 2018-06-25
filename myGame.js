@@ -10,13 +10,21 @@ var puzzlePieces = [
     {img: 'seedOfLife09.png'}, 
 
 ]
-
+var myCanvas = document.getElementById('theCanvas');
+var ctx = myCanvas.getContext('2d');
+var myGame;
+// var myGame = new Sageom(puzzlePieces);
+// myGame.shuffleBoard();
 
 
 var Sageom  = function (puzzlePieces) {
     this.pieces = puzzlePieces;
 
-  };
+  }; //end of Sageom
+
+var placePuzzlePieces = function() {
+
+}; //end of placePuzzlePieces
 
 Sageom.prototype.shuffleBoard = function () {
     var newBoard = this.pieces;
@@ -31,7 +39,19 @@ Sageom.prototype.shuffleBoard = function () {
     this.pieces = newBoard;
 
 
-};
+}; //end of shuffleBoard
+
+
+document.getElementById("start-button").onclick = function() {
+    myGame = new Sageom();
+    myGame.shuffleBoard();
+    
+ 
+    
+  };
+
+
+
 
 
 

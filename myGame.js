@@ -12,39 +12,51 @@ var puzzlePieces = [
 ]
 var myCanvas = document.getElementById('theCanvas');
 var ctx = myCanvas.getContext('2d');
+// console.log(myCanvas)
 var myGame;
 // var myGame = new Sageom(puzzlePieces);
 // myGame.shuffleBoard();
 
 
-var Sageom  = function (puzzlePieces) {
-    this.pieces = puzzlePieces;
+var Sageom  = function (array) {
+    this.pieces = array;
 
   }; //end of Sageom
 
+// calling sageom cf
+  Sageom(puzzlePieces)
+
 var placePuzzlePieces = function() {
+    this.pieces.forEach(function (){
+
+    }
+
+
+)
 
 }; //end of placePuzzlePieces
 
 Sageom.prototype.shuffleBoard = function () {
-    var newBoard = this.pieces;
+  
+  
 
-    for (var i = newBoard.length - 1; i > 0; i--) {
+    for (var i = this.pieces.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var temp = newBoard[i];
         newBoard[i] = newBoard[j];
         newBoard[j] = temp;
     }
     
-    this.pieces = newBoard;
+  
+    console.log(this.pieces)
 
 
 }; //end of shuffleBoard
 
 
 document.getElementById("start-button").onclick = function() {
-    myGame = new Sageom();
-    myGame.shuffleBoard();
+    myGame = new Sageom(puzzlePieces);
+    // myGame.shuffleBoard(puzzlePieces);
     
  
     

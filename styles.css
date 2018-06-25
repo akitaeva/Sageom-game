@@ -1,9 +1,25 @@
-#allOfPage {
+body {
     background-color: blanchedalmond;
+}
+
+
+#allOfPage {
+    width: 95vw;
+    margin: 0 auto;
     background-image: url("images/sacgeom-overlap.png");
+    background-size: 5%; 
     background-repeat: repeat;
 }
 
-.gameTitle {
-    text-align: center;
+#playBoard{
+    display: block;
+    margin: 10vh auto;
+    padding: 10px 10px;
+    background-color: #edd8b4;
+    background-size: contain; 
+    border: 3px solid #c6b28f;
+    width: 740px;
+    height: 740px;
+    
 }
+

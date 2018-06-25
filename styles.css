@@ -1,0 +1,9 @@
+#allOfPage {
+    background-color: blanchedalmond;
+    background-image: url("images/sacgeom-overlap.png");
+    background-repeat: repeat;
+}
+
+.gameTitle {
+    text-align: center;
+}

@@ -18,6 +18,7 @@ body {
     background-color: #ccc9c5;
     background-size: contain; 
     border: 3px solid #c6b28f;
+    border-radius: 10px;
     width: 740px;
     height: 740px;
     
@@ -44,11 +45,13 @@ body {
 
 
   
-#start-but:hover {
+#start-button:hover {
     background: #9e7838;
     text-decoration: none;
   }
 
-.gameControls:p {
+#gameControls  p{
     color: #474239;
+    background-color: #ccc9c5;
+    border: 3px solid #c6b28f;
 }

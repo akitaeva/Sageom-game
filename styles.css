@@ -19,8 +19,8 @@ body {
     background-size: contain; 
     border: 3px solid #c6b28f;
     border-radius: 10px;
-    width: 740px;
-    height: 740px;
+    width: 760px;
+    height: 760px;
     
 }
 
@@ -43,6 +43,19 @@ body {
     text-decoration: none;
 }
 
+.pieces {
+    width: 240px;
+    height: 240px;
+    float: left;
+    border: 1px solid #474239;
+    font-size: 64px;
+  }
+
+
+  .pieces:hover {
+    border: 4px solid #a0f37f;
+    box-shadow: #74706b;
+  }
 
   
 #start-button:hover {

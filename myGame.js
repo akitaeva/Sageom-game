@@ -3,8 +3,8 @@ var puzzlePieces = [
     {name: '1', img: 'seedOfLife02.png', position: "Indx01", rotationValue: 0},
     {name: '2', img: 'seedOfLife03.png', position: "Indx02", rotationValue: 0}, 
     {name: '3', img: 'seedOfLife04.png', position: "Indx10", rotationValue: 0}, 
-    {name: '4', img: 'seedOfLife05.png', position: "Indx12", rotationValue: 0}, 
-    {name: '5', img: 'seedOfLife06.png', position: "Indx13", rotationValue: 0}, 
+    {name: '4', img: 'seedOfLife05.png', position: "Indx11", rotationValue: 0}, 
+    {name: '5', img: 'seedOfLife06.png', position: "Indx12", rotationValue: 0}, 
     {name: '6', img: 'seedOfLife07.png', position: "Indx20", rotationValue: 0}, 
     {name: '7', img: 'seedOfLife08.png', position: "Indx21", rotationValue: 0}, 
     {name: '8', img: 'seedOfLife09.png', position: "Indx22", rotationValue: 0}, 
@@ -12,7 +12,7 @@ var puzzlePieces = [
 ];
 
 var myGame;
-console.log(puzzlePieces)
+// console.log(puzzlePieces)
 $(document).ready(function(){
     
 
@@ -33,9 +33,9 @@ Sageom.prototype.drawBoard = function () {
     this.pieces.forEach(function(row, i) {
         row.forEach(function(piece, j){
 
-            console.log($("#Indx" +i+j));
+            // console.log($("#Indx" +i+j));
             
-            $("#Indx" + i.toString()+j.toString()).html("<img src=Images/" + that.pieces[i][j].img + ">");
+            $("#I" + i.toString()+j.toString()).html("<img src=Images/" + that.pieces[i][j].img + " id=" + that.pieces[i][j].position + ">");
            
 
         })
@@ -56,7 +56,7 @@ Sageom.prototype.shuffleBoard = function () {
     }
     
     this.pieces = newBoard;
-    console.log(this.pieces);
+    // console.log(this.pieces[0]);
 
 }; //end of shuffleBoard
 
@@ -86,31 +86,35 @@ Sageom.prototype.switchPieces = function (pieceToAdd){
     myGame.pickedPieces.push(pieceToAdd);
    
 
-    console.log("im clicking on something!   ====================", document.getElementById(pieceToAdd[0].id).getElementsByTagName('img')[0].src);
-    console.log("picked pieces  1  !   ====================", myGame.pickedPieces[0][0].getElementsByTagName('img')[0].src);
-    console.log("picked pieces  2  !   ====================", myGame.pickedPieces[1][0].getElementsByTagName('img')[0].src);
 
-    // document.getElementById(pieceToAdd[0].id).getElementsByTagName('img')[0].src);
+    console.log("the pieces shuffled and split  =====", this.pieces)
+    console.log("pieces being added >>>>>>>>", myGame.pickedPieces[0][0].getElementsByTagName('img')[0].id)
+    console.log("pieace to add ?????????????", pieceToAdd[0]);
+
+
     if (myGame.pickedPieces.length === 2) {
         var result = myGame.checkElement(myGame.pickedPieces[0], myGame.pickedPieces[1])
-        var pickedPieceOneSrc = myGame.pickedPieces[0][0].getElementsByTagName('img')[0].src
-        var pickedPieceTwoSrc = myGame.pickedPieces[1][0].getElementsByTagName('img')[0].src
+        var pickedPieceOneId = myGame.pickedPieces[0][0].getElementsByTagName('img')[0].id;
+        var pickedPieceTwoId = myGame.pickedPieces[1][0].getElementsByTagName('img')[0].id;
 
-        myGame.pickedPieces[0][0].getElementsByTagName('img')[0].src = pickedPieceTwoSrc
-        myGame.pickedPieces[1][0].getElementsByTagName('img')[0].src = pickedPieceOneSrc
-        if (!result) {
+        
+        if (result) {
             setTimeout(function() {
                 console.log(myGame.pickedPieces[0]);
-               
-    //switch the position of the pieces by putting the images into respective ids
+                console.log("picked one  __________________", pickedPieceOneId)
+                console.log("picked two --------------------", pickedPieceTwoId)
+                indexOf(this.pieces)
+
 
                 myGame.pickedPieces = [];
-            }, 500);
+            }, 50);
         }
         else {
             myGame.pickedPieces = [];
 
         }
+
+        console.log("picked pieces after function >>>>>>>>>>>>>>>>  ",myGame.pickedPieces)
     }
 
 }
@@ -125,6 +129,7 @@ document.getElementById("start-button").onclick = function() {
     $('.row').removeClass('blocked');
     // $('#playBoard').addClass('blocked');
     $('.piece').on('click', function() {
+        console.log('click event for piece clicked ------------>>>>>>>>>', this);
         myGame.switchPieces($(this));
         myGame.drawBoard();
         // myGame.pickedPieces.push($(this));

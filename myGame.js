@@ -84,26 +84,47 @@ Sageom.prototype.switchPieces = function (pieceToAdd){
     this.totalClicks++;
 
     myGame.pickedPieces.push(pieceToAdd);
-   
+
+    // console.log("the pieces shuffled and split  =====", this.pieces)
+    // console.log("pieces being added >>>>>>>>", myGame.pickedPieces[0][0].getElementsByTagName('img')[0].id)
+    // console.log("pieace to add ?????????????", pieceToAdd[0]);
 
 
-    console.log("the pieces shuffled and split  =====", this.pieces)
-    console.log("pieces being added >>>>>>>>", myGame.pickedPieces[0][0].getElementsByTagName('img')[0].id)
-    console.log("pieace to add ?????????????", pieceToAdd[0]);
 
-
+    
+    
     if (myGame.pickedPieces.length === 2) {
         var result = myGame.checkElement(myGame.pickedPieces[0], myGame.pickedPieces[1])
-        var pickedPieceOneId = myGame.pickedPieces[0][0].getElementsByTagName('img')[0].id;
-        var pickedPieceTwoId = myGame.pickedPieces[1][0].getElementsByTagName('img')[0].id;
-
+        // var pickedPieceOneId = myGame.pickedPieces[0][0].getElementsByTagName('img')[0].id;
+        // var pickedPieceTwoId = myGame.pickedPieces[1][0].getElementsByTagName('img')[0].id;
+        
         
         if (result) {
             setTimeout(function() {
-                console.log(myGame.pickedPieces[0]);
-                console.log("picked one  __________________", pickedPieceOneId)
-                console.log("picked two --------------------", pickedPieceTwoId)
-                indexOf(this.pieces)
+                tempVar1 = myGame.pickedPieces[0][0].getElementsByTagName('img')[0];
+                tempVar2 = myGame.pickedPieces[1][0].getElementsByTagName('img')[0];
+                // console.log("the temp var %%%%%%%%%%%%%%%%%%%%%% ", tempVar1)
+                console.log("before the for loops ****************", myGame.pickedPieces[0][0])
+                for ( var i = 0; i < myGame.pickedPieces.length; i++ ) {
+                    console.log("first for loop @@@@@@@@@@@@@@@@@@", myGame.pickedPieces.length)
+            
+                    for ( var j = 0; j = myGame.pickedPieces.length; j++ ) {
+                        console.log("puzzle piece array in 2 for loops [][][][][][][][][][][][][]", myGame.pickedPieces[i][j])
+            
+                        if ( myGame.pickedPieces[i][j].id === tempVar1.id ){
+                            console.log("this is the 1st if >>>>", myGame.pickedPieces[i][j].getElementsByTagName('img')[0])
+                            myGame.pickedPieces[i][j].getElementsByTagName('img')[0].src = tempVar2.src
+                        }
+                        if ( myGame.pickedPieces[i][j].id === tempVar2.id ) {
+                            console.log("this is the 2nd if =====", myGame.pickedPieces[i][j].getElementsByTagName('img')[0])
+                            myGame.pickedPieces[i][j].getElementsByTagName('img')[0].src = tempVar1.src
+                        }
+                    }
+                }
+                // console.log(myGame.pickedPieces[0]);
+                console.log("picked one  __________________", tempVar1)
+                console.log("picked two --------------------", tempVar2)
+                // indexOf(this.pieces)
 
 
                 myGame.pickedPieces = [];

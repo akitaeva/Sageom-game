@@ -35,7 +35,7 @@ Sageom.prototype.drawBoard = function () {
 
             console.log($("#Indx" +i+j));
             
-            $("#Indx" + i.toString()+j.toString()).html("<img src=Images/" + that.pieces[i][j].img + ">");
+            $("#Indx" + i.toString()+j.toString()).html("<img src=images/" + that.pieces[i][j].img + ">");
            
 
         })

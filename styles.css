@@ -7,25 +7,26 @@ body {
     width: 95vw;
     margin: 0 auto;
     background-image: url("images/sacgeom-overlap.png");
-    background-size: 4.5%; 
+    background-size: 4.4%; 
     background-repeat: repeat;
 }
 
 #playBoard{
     display: block;
-    margin: 10vh auto;
+    margin: 10vh 4vw;
     padding: 10px 10px;
     background-color: #ccc9c5;
     background-size: contain; 
     border: 3px solid #c6b28f;
     border-radius: 10px;
-    width: 760px;
-    height: 760px;
+    width: 740px;
+    height: 740px;
     
 }
 
 #start-button {
     margin:auto;
+    margin-top: 180px;
     display:block;
     background: #edd8b4;
     background-image: -webkit-linear-gradient(top, #edd8b4, #9e7838);
@@ -38,21 +39,21 @@ body {
     border-radius: 28px;
     text-shadow: 1px 1px 3px #c6b28f;
     color: #474239;
-    font-size: 35px;
+    font-size: 23px;
     padding: 8px 20px 12px 20px;
     text-decoration: none;
 }
 
-.pieces {
-    width: 240px;
-    height: 240px;
-    float: left;
+.piece {
+    /* width: 240px;
+    height: 240px; */
     border: 1px solid #474239;
     font-size: 64px;
+    padding: 0;
   }
 
 
-  .pieces:hover {
+  .piece:hover {
     border: 4px solid #a0f37f;
     box-shadow: #74706b;
   }
@@ -63,8 +64,16 @@ body {
     text-decoration: none;
   }
 
-#gameControls  p{
+#gameControls  {
     color: #474239;
     background-color: #ccc9c5;
     border: 3px solid #c6b28f;
+    height: 90vh;
+    width: 20vw;
+    border-radius: 10px;
+    margin-top: 35px 2vw;
+}
+
+.blocked {
+    display: none;
 }

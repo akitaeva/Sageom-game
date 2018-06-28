@@ -16,27 +16,52 @@
 </head>
 
 <body>
-  <div id="allOfPage">
+  <div class="container-fluid" id="allOfPage">
 
-    <div id="playBoard"> 
+    <div class="row">
+    
+      <div class="col-xs-3" id="gameControls">
+          <button id="start-button">Start New Game</button>
+          <h3>Game controls:</h3><br>
+          <p> >> Click on a puzzle piece to select it.</p>
+          <br>
+          <p> >> Click on the same puzzle piece a second time to de-select it.</p>
+          <br>
+          <p> >> Click the second time on a different puzzle piece to switch them between their respective places.</p>
+          <br>
+          <div id="gameStats">
+              <h4>Available clicks:</h4>
+              <h5 id="clicksLeft"></h5>
+          </div>
 
+      </div> <!--gameControls ends-->
       
-      <!-- <canvas id="theCanvas" width="740" height="740">
-      </canvas> -->
-    </div> <!--playBoard ends-->
+      <div class="col-xs-6 " id="playBoard">
+        <div class="row blocked" id="topPuzzleRow">
+          <div class="col-xs-4 piece" id="Indx00"></div>
+          <div class="col-xs-4 piece" id="Indx01"></div>
+          <div class="col-xs-4 piece" id="Indx02"></div>
+        </div> <!--topPuzzleRow ends-->
+        <div class="row blocked" id="midPuzzleRow">
+            <div class="col-xs-4 piece" id="Indx10"></div>
+            <div class="col-xs-4 piece" id="Indx11"></div>
+            <div class="col-xs-4 piece" id="Indx12"></div>
+          </div> <!--midPuzzleRow ends-->
+        <div class="row blocked" id="btmPuzzleRow">
+            <div class="col-xs-4 piece" id="Indx20"></div>
+            <div class="col-xs-4 piece" id="Indx21"></div>
+            <div class="col-xs-4 piece" id="Indx22"></div>
+        </div> <!--btmPuzzleRow ends-->
+        
+         
+      </div><!--playBoard ends-->
+      
+      <div class="col-xs-3" id="gameInfo">
 
-    <div id="gameInfo">
+      </div> <!---gameInfo ends-->
 
-
-    </div> <!---gameInfo ends-->
-
-    <div id="gameControls">
-        <button id="start-button">Start New Game</button>
-        <p>Drag and drop images to complete the shape</p>
-
-    </div> <!--gameControls ends-->
  
- 
+    </div> <!---the top row for the grid layout ends-->
   </div> <!---AllofPage ends-->
 
 </body>

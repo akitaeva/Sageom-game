@@ -1,18 +1,23 @@
 var puzzlePieces = [
-    {name: '0', img: 'seedOfLife01.png', position: "Indx00", rotationValue: 0},
-    {name: '1', img: 'seedOfLife02.png', position: "Indx01", rotationValue: 0},
-    {name: '2', img: 'seedOfLife03.png', position: "Indx02", rotationValue: 0}, 
-    {name: '3', img: 'seedOfLife04.png', position: "Indx10", rotationValue: 0}, 
-    {name: '4', img: 'seedOfLife05.png', position: "Indx11", rotationValue: 0}, 
-    {name: '5', img: 'seedOfLife06.png', position: "Indx12", rotationValue: 0}, 
-    {name: '6', img: 'seedOfLife07.png', position: "Indx20", rotationValue: 0}, 
-    {name: '7', img: 'seedOfLife08.png', position: "Indx21", rotationValue: 0}, 
-    {name: '8', img: 'seedOfLife09.png', position: "Indx22", rotationValue: 0}, 
+    {name: '0', img: 'seedOfLife01.png', position: "00", rotationValue: 0},
+    {name: '1', img: 'seedOfLife02.png', position: "01", rotationValue: 0},
+    {name: '2', img: 'seedOfLife03.png', position: "02", rotationValue: 0}, 
+    {name: '3', img: 'seedOfLife04.png', position: "10", rotationValue: 0}, 
+    {name: '4', img: 'seedOfLife05.png', position: "11", rotationValue: 0}, 
+    {name: '5', img: 'seedOfLife06.png', position: "12", rotationValue: 0}, 
+    {name: '6', img: 'seedOfLife07.png', position: "20", rotationValue: 0}, 
+    {name: '7', img: 'seedOfLife08.png', position: "21", rotationValue: 0}, 
+    {name: '8', img: 'seedOfLife09.png', position: "22", rotationValue: 0}, 
 
 ];
 
+var original = [];
+    for (var i = 0; i < puzzlePieces.length; i++){
+        original.push(puzzlePieces[i].position);
+    }
+    console.log("blah: ", original);
+
 var myGame;
-// console.log(puzzlePieces)
 $(document).ready(function(){
     
 
@@ -20,24 +25,17 @@ var Sageom = function(array) {
         this.pieces = array; //getting access to the array
         this.pickedPieces = []; // comparison array
         this.totalClicks = 0;
-        // this.shuffleBoard(); // calling the shuffle function
-        // this.drawBoard(); // calling the draw board function
+
 
     }; //the end of Sageom
 
 
 Sageom.prototype.drawBoard = function () {
-    // this.splitBoard();
     var that  = this;
    
     this.pieces.forEach(function(row, i) {
         row.forEach(function(piece, j){
-
-            // console.log($("#Indx" +i+j));
-            
             $("#I" + i.toString()+j.toString()).html("<img src=Images/" + that.pieces[i][j].img + " id=" + that.pieces[i][j].position + ">");
-           
-
         })
 
     })
@@ -62,11 +60,11 @@ Sageom.prototype.shuffleBoard = function () {
 
 Sageom.prototype.splitBoard = function() {
     var that = this; 
-    var splitBoard = [];
+    this.splitBoard = [];
     while (that.pieces.length) {
-      splitBoard.push(that.pieces.splice(0, 3));
+      this.splitBoard.push(that.pieces.splice(0, 3));
     }
-    this.pieces = splitBoard;
+    this.pieces = this.splitBoard;
   }
 
 
@@ -79,63 +77,53 @@ Sageom.prototype.checkElement = function (firstClick, secondClick) {
    }; //the end of checkElement
 
 
+Sageom.prototype.checkIfCompleted = function() {
+    var tempArr = [];
+    var that  = this;
+   
+    this.pieces.forEach(function(row, i) {
+        row.forEach(function(piece, j){
+            // parseInt("09", 10)
+            console.log("j ===== ", piece.position);
+            tempArr.push(piece.position); 
+
+        })
+
+    })
+    if(JSON.stringify(original)==JSON.stringify(tempArr)){
+        $('#myModal').modal('show');
+    }
+
+
+
+    console.log("tempArr: ", tempArr);
+} //the end of checkIfCompleted function
+
 
 Sageom.prototype.switchPieces = function (pieceToAdd){
     this.totalClicks++;
 
     myGame.pickedPieces.push(pieceToAdd);
-
-    // console.log("the pieces shuffled and split  =====", this.pieces)
-    // console.log("pieces being added >>>>>>>>", myGame.pickedPieces[0][0].getElementsByTagName('img')[0].id)
-    // console.log("pieace to add ?????????????", pieceToAdd[0]);
-
-
-
-    
     
     if (myGame.pickedPieces.length === 2) {
-        var result = myGame.checkElement(myGame.pickedPieces[0], myGame.pickedPieces[1])
-        // var pickedPieceOneId = myGame.pickedPieces[0][0].getElementsByTagName('img')[0].id;
-        // var pickedPieceTwoId = myGame.pickedPieces[1][0].getElementsByTagName('img')[0].id;
-        
-        
-        if (result) {
-            setTimeout(function() {
-                tempVar1 = myGame.pickedPieces[0][0].getElementsByTagName('img')[0];
-                tempVar2 = myGame.pickedPieces[1][0].getElementsByTagName('img')[0];
-                // console.log("the temp var %%%%%%%%%%%%%%%%%%%%%% ", tempVar1)
-                console.log("before the for loops ****************", myGame.pickedPieces[0][0])
-                for ( var i = 0; i < myGame.pickedPieces.length; i++ ) {
-                    console.log("first for loop @@@@@@@@@@@@@@@@@@", myGame.pickedPieces.length)
-            
-                    for ( var j = 0; j = myGame.pickedPieces.length; j++ ) {
-                        console.log("puzzle piece array in 2 for loops [][][][][][][][][][][][][]", myGame.pickedPieces[i][j])
-            
-                        if ( myGame.pickedPieces[i][j].id === tempVar1.id ){
-                            console.log("this is the 1st if >>>>", myGame.pickedPieces[i][j].getElementsByTagName('img')[0])
-                            myGame.pickedPieces[i][j].getElementsByTagName('img')[0].src = tempVar2.src
-                        }
-                        if ( myGame.pickedPieces[i][j].id === tempVar2.id ) {
-                            console.log("this is the 2nd if =====", myGame.pickedPieces[i][j].getElementsByTagName('img')[0])
-                            myGame.pickedPieces[i][j].getElementsByTagName('img')[0].src = tempVar1.src
-                        }
-                    }
-                }
-                // console.log(myGame.pickedPieces[0]);
-                console.log("picked one  __________________", tempVar1)
-                console.log("picked two --------------------", tempVar2)
-                // indexOf(this.pieces)
-
-
-                myGame.pickedPieces = [];
-            }, 50);
-        }
-        else {
-            myGame.pickedPieces = [];
-
+        if (this.pickedPieces[0] === this.pickedPieces[1]){
+            this.pickedPieces = [];
+            return;
         }
 
-        console.log("picked pieces after function >>>>>>>>>>>>>>>>  ",myGame.pickedPieces)
+        var firstRowNum = this.pickedPieces[0][0];
+        var firstColNum = this.pickedPieces[0][1];
+        var secondRowNum = this.pickedPieces[1][0];
+        var secondColNum = this.pickedPieces[1][1];
+
+        var temp = this.pieces[firstRowNum][firstColNum];
+        this.pieces[firstRowNum][firstColNum] = this.pieces[secondRowNum][secondColNum];
+        this.pieces[secondRowNum][secondColNum] = temp;
+        this.pickedPieces = [];
+        this.drawBoard();
+        this.checkIfCompleted();
+                  
+       
     }
 
 }
@@ -150,13 +138,11 @@ document.getElementById("start-button").onclick = function() {
     $('.row').removeClass('blocked');
     // $('#playBoard').addClass('blocked');
     $('.piece').on('click', function() {
-        console.log('click event for piece clicked ------------>>>>>>>>>', this);
-        myGame.switchPieces($(this));
-        myGame.drawBoard();
-        // myGame.pickedPieces.push($(this));
 
-        
-        // document.getElementById('yourimageID').getElementsByTagName('img')[0].src
+        console.log( 'this the ID----', $(this)[0].id.substr(1,2)   )
+        myGame.switchPieces($(this)[0].id.substr(1,2));
+        myGame.drawBoard();
+
 
       }); //end of on-click pieces
   };

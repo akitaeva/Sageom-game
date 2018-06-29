@@ -79,19 +79,16 @@ Sageom.prototype.checkElement = function (firstClick, secondClick) {
 
 Sageom.prototype.checkIfCompleted = function() {
     var tempArr = [];
-    var that  = this;
    
     this.pieces.forEach(function(row, i) {
         row.forEach(function(piece, j){
-            // parseInt("09", 10)
-            console.log("j ===== ", piece.position);
             tempArr.push(piece.position); 
 
         })
 
     })
     if(JSON.stringify(original)==JSON.stringify(tempArr)){
-        $('#myModal').modal('show');
+        $('#winModal').modal('show');
         setTimeout(function() {
 
             location.reload();
@@ -104,50 +101,63 @@ Sageom.prototype.checkIfCompleted = function() {
 } //the end of checkIfCompleted function
 
 
-Sageom.prototype.switchPieces = function (pieceToAdd){
+Sageom.prototype.switchPieces = function (pieceToAdd){  //function to switch uzzle tiles
     this.totalClicks++;
+    $("#clicksLeft").html(25-this.totalClicks);
 
-    myGame.pickedPieces.push(pieceToAdd);
+    if (this.totalClicks<=25) {
+        myGame.pickedPieces.push(pieceToAdd);
+        
+        if (myGame.pickedPieces.length === 2) {
+            if (this.pickedPieces[0] === this.pickedPieces[1]){
+                this.pickedPieces = [];
+                return;
+            }
     
-    if (myGame.pickedPieces.length === 2) {
-        if (this.pickedPieces[0] === this.pickedPieces[1]){
+            var firstRowNum = this.pickedPieces[0][0];
+            var firstColNum = this.pickedPieces[0][1];
+            var secondRowNum = this.pickedPieces[1][0];
+            var secondColNum = this.pickedPieces[1][1];
+    
+            var temp = this.pieces[firstRowNum][firstColNum];
+            this.pieces[firstRowNum][firstColNum] = this.pieces[secondRowNum][secondColNum];
+            this.pieces[secondRowNum][secondColNum] = temp;
             this.pickedPieces = [];
-            return;
+            this.drawBoard();
+            this.checkIfCompleted();
+            $(".piece").removeClass("picked");          
+           
         }
 
-        var firstRowNum = this.pickedPieces[0][0];
-        var firstColNum = this.pickedPieces[0][1];
-        var secondRowNum = this.pickedPieces[1][0];
-        var secondColNum = this.pickedPieces[1][1];
-
-        var temp = this.pieces[firstRowNum][firstColNum];
-        this.pieces[firstRowNum][firstColNum] = this.pieces[secondRowNum][secondColNum];
-        this.pieces[secondRowNum][secondColNum] = temp;
-        this.pickedPieces = [];
-        this.drawBoard();
-        this.checkIfCompleted();
-                  
-       
     }
+    else {
+        $('#loseModal').modal('show');
+        setTimeout(function() {
+
+            location.reload();
+        }, 2000)
+
+    }
+
+
 
 }
 
 
 document.getElementById("start-button").onclick = function() {
-
+        $(this).hide();
         myGame = new Sageom(puzzlePieces);
         myGame.shuffleBoard();
         myGame.splitBoard();
         myGame.drawBoard();
-
-    $('.row').removeClass('blocked');
-    // $('#playBoard').addClass('blocked');
-    $('.piece').on('click', function() {
-
-        console.log( 'this the ID----', $(this)[0].id.substr(1,2)   )
-        myGame.switchPieces($(this)[0].id.substr(1,2));
-        myGame.drawBoard();
-
+        $("#puzzleInfo").html("<img src=Images/seedoflifebl.png> <p> The Seed of Life is a universal symbol of creation found at the heart of an ancient pattern called the Flower of Life. <br> <br> The Seed of Life is formed from a relationship of 6 circles around one. In fact, 6 circles will ALWAYS fit exactly around a 7th circle of the same size. Each circle fits into this pattern like a lock and key, forming a dynamic field of possible geometric relationships which reveal the most fundamental shapes of creation. It forms a foundation upon which the infinite, fractal nature of life can be understood.</p>");
+        $('.row').removeClass('blocked');
+        $('piece').removeClass('unbordered');
+        // $('#playBoard').addClass('blocked');
+        $('.piece').on('click', function() {
+            $(this).toggleClass("picked");
+            myGame.switchPieces($(this)[0].id.substr(1,2));
+            myGame.drawBoard();
 
       }); //end of on-click pieces
   };

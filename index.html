@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Sageom Puzzle</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -17,55 +18,59 @@
 
 <body>
   <div class="container-fluid" id="allOfPage">
+    <div  class="row" id="header">
+      <h1> Sageom Game </h1>
+    </div>
 
-    <div class="row">
+    <div class="row" id="mainSections">
     
       <div class="col-xs-3" id="gameControls">
+          <h3>How to Play:</h3><br>
+          <p> Click on a puzzle piece to select it. </p>
+          <br>
+          <p> Second click on the same puzzle piece de-select it, second click on a different puzzle piece would swap their respective positions.  </p>
+          <br>
+          <p> Complete the game in as few moves as possible.</p>
+          <br>
           <button id="start-button">Start New Game</button>
-          <h3>Game controls:</h3><br>
-          <p> >> Click on a puzzle piece to select it.</p>
-          <br>
-          <p> >> Click on the same puzzle piece a second time to de-select it.</p>
-          <br>
-          <p> >> Click the second time on a different puzzle piece to switch them between their respective places.</p>
-          <br>
           <div id="gameStats">
-              <h4>Available clicks:</h4>
-              <h5 id="clicksLeft"></h5>
+              <h4>Available clicks: </h4>
+              <h5 id="clicksLeft">25</h5>
           </div>
 
       </div> <!--gameControls ends-->
       
       <div class="col-xs-6 " id="playBoard">
         <div class="row blocked" id="topPuzzleRow">
-          <div class="col-xs-4 piece" id="I00"></div>
-          <div class="col-xs-4 piece" id="I01"></div>
-          <div class="col-xs-4 piece" id="I02"></div>
+          <div class="col-xs-4 piece unbordered" id="I00"></div>
+          <div class="col-xs-4 piece unbordered" id="I01"></div>
+          <div class="col-xs-4 piece unbordered" id="I02"></div>
         </div> <!--topPuzzleRow ends-->
         <div class="row blocked" id="midPuzzleRow">
-            <div class="col-xs-4 piece" id="I10"></div>
-            <div class="col-xs-4 piece" id="I11"></div>
-            <div class="col-xs-4 piece" id="I12"></div>
+            <div class="col-xs-4 piece unbordered" id="I10"></div>
+            <div class="col-xs-4 piece unbordered" id="I11"></div>
+            <div class="col-xs-4 piece unbordered" id="I12"></div>
           </div> <!--midPuzzleRow ends-->
         <div class="row blocked" id="btmPuzzleRow">
-            <div class="col-xs-4 piece" id="I20"></div>
-            <div class="col-xs-4 piece" id="I21"></div>
-            <div class="col-xs-4 piece" id="I22"></div>
+            <div class="col-xs-4 piece unbordered" id="I20"></div>
+            <div class="col-xs-4 piece unbordered" id="I21"></div>
+            <div class="col-xs-4 piece unbordered" id="I22"></div>
         </div> <!--btmPuzzleRow ends-->
         
          
       </div><!--playBoard ends-->
       
-      <div class="col-xs-3" id="gameInfo">
+      <div class="col-xs-3" id="puzzleInfo">
 
-      </div> <!---gameInfo ends-->
+      </div> <!---puzzleInfo ends-->
+      <p></p>
 
  
     </div> <!---the top row for the grid layout ends-->
   </div> <!---AllofPage ends-->
 
   
-<div class="modal fade bd-example-modal-lg" tabindex="-1" id="myModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" id="winModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
       <h2>You Have Completed the Puzzle! </h2>
@@ -73,6 +78,15 @@
       </div>
     </div>
   </div>
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" id="loseModal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <h2>You Have Exceeded the Number of Available Clicks..<br>
+          Try Again! </h2>
+        
+        </div>
+      </div>
+    </div>
 </body>
 <script type="text/javascript" src="myGame.js"> </script>
 </html>

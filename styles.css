@@ -1,11 +1,14 @@
 body {
     background-color: #ccc9c5;
+    font-family: 'Poiret One', cursive;
 }
 
 
 #allOfPage {
     width: 95vw;
-    margin: 0 auto;
+    height: 100vh;
+    margin-top: 20px;
+    margin: auto;
     background-image: url("Images/sacgeom-overlap.png");
     background-size: 4.4%; 
     background-repeat: repeat;
@@ -13,20 +16,23 @@ body {
 
 #playBoard{
     display: block;
-    margin: 10vh 4vw;
+    margin: 5vh 4vw;
     padding: 10px 10px;
     background-color: #ccc9c5;
     background-size: contain; 
     border: 3px solid #c6b28f;
     border-radius: 10px;
-    width: 740px;
-    height: 740px;
+    max-width: 740px;
+    max-height: 740px;
+    min-width: 720px;
+    min-height: 720px;
     
 }
 
 #start-button {
     margin:auto;
-    margin-top: 180px;
+    margin-top: 20px;
+    margin-bottom: 15px;
     display:block;
     background: #edd8b4;
     background-image: -webkit-linear-gradient(top, #edd8b4, #9e7838);
@@ -52,10 +58,22 @@ body {
     padding: 0;
   }
 
+#gameStats {
+    margin-top: 65px;
+}
 
-  .piece:hover {
+
+.piece:hover {
     border: 4px solid #a0f37f;
     box-shadow: #74706b;
+  }
+
+.unbordered:hover {
+      border: none;
+  }
+
+.unbordered {
+      border: none;
   }
 
   
@@ -68,12 +86,76 @@ body {
     color: #474239;
     background-color: #ccc9c5;
     border: 3px solid #c6b28f;
-    height: 90vh;
+    height: 70vh;
     width: 20vw;
     border-radius: 10px;
-    margin-top: 35px 2vw;
+    margin-top: 5vw;
+    margin-left: 25px;
+    size: 2em;
+}
+
+
+
+#puzzleInfo  {
+    color: #474239;
+    background-color: #ccc9c5;
+    border: 3px solid #c6b28f;
+    height: 75vh;
+    width: 20vw;
+    border-radius: 10px;
+    margin-top: 5vw;
+    margin-right: 25px;
+    size: 2em;
+}
+
+#header {
+    color: #474239;
+    background-color: #ccc9c5;
+    border: 3px solid #c6b28f;
+    /* height: 5vh; */
+    width: 45vw;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 15px;
+    /* margin-left:350px; */
+    /* display: flex;
+    justify-content: center; */
+
+}
+#header > h1{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+#gameControls > h3, h4, h5 {
+    font-weight: bolder;
+}
+
+#mainSections {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#puzzleInfo p{
+   size: 14px;
+   margin-top: 40px;
+}
+
+#puzzleInfo img{
+    max-width: 200px; 
+    margin-top: 25px;
+
+    
 }
 
 .blocked {
-    display: none;
+    display: block;
+    border: none;
+}
+
+.picked {
+    border: 4px solid #76c9f2;
 }

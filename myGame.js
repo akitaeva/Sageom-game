@@ -92,8 +92,12 @@ Sageom.prototype.checkIfCompleted = function() {
     })
     if(JSON.stringify(original)==JSON.stringify(tempArr)){
         $('#myModal').modal('show');
-    }
+        setTimeout(function() {
 
+            location.reload();
+        }, 2000)
+        // $('.row').addClass('blocked');
+    }
 
 
     console.log("tempArr: ", tempArr);
@@ -130,10 +134,11 @@ Sageom.prototype.switchPieces = function (pieceToAdd){
 
 
 document.getElementById("start-button").onclick = function() {
-    myGame = new Sageom(puzzlePieces);
-    myGame.shuffleBoard();
-    myGame.splitBoard();
-    myGame.drawBoard();
+
+        myGame = new Sageom(puzzlePieces);
+        myGame.shuffleBoard();
+        myGame.splitBoard();
+        myGame.drawBoard();
 
     $('.row').removeClass('blocked');
     // $('#playBoard').addClass('blocked');

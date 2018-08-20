@@ -1,4 +1,4 @@
-var puzzlePieces = [
+var puzzlePieces = [  //array of images
     {name: '0', img: 'seedOfLife01.png', position: "00", rotationValue: 0},
     {name: '1', img: 'seedOfLife02.png', position: "01", rotationValue: 0},
     {name: '2', img: 'seedOfLife03.png', position: "02", rotationValue: 0}, 
@@ -15,7 +15,7 @@ var original = [];
     for (var i = 0; i < puzzlePieces.length; i++){
         original.push(puzzlePieces[i].position);
     }
-    console.log("blah: ", original);
+    console.log("the original array: ", original);
 
 var myGame;
 $(document).ready(function(){
@@ -24,13 +24,13 @@ $(document).ready(function(){
 var Sageom = function(array) {
         this.pieces = array; //getting access to the array
         this.pickedPieces = []; // comparison array
-        this.totalClicks = 0;
+        this.totalClicks = 0;  //measure for win/lose 
 
 
     }; //the end of Sageom
 
 
-Sageom.prototype.drawBoard = function () {
+Sageom.prototype.drawBoard = function () {   //displaying the board after the start and each move
     var that  = this;
    
     this.pieces.forEach(function(row, i) {
@@ -42,7 +42,7 @@ Sageom.prototype.drawBoard = function () {
 } //the end of drawBoard function
 
 
-Sageom.prototype.shuffleBoard = function () {
+Sageom.prototype.shuffleBoard = function () {  //shuffling the original array
   
     var newBoard =  this.pieces;
   
@@ -101,7 +101,7 @@ Sageom.prototype.checkIfCompleted = function() {
 } //the end of checkIfCompleted function
 
 
-Sageom.prototype.switchPieces = function (pieceToAdd){  //function to switch uzzle tiles
+Sageom.prototype.switchPieces = function (pieceToAdd){  //function to switch puzzle tiles
     this.totalClicks++;
     $("#clicksLeft").html(25-this.totalClicks);
 

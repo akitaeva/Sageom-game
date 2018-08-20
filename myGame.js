@@ -69,7 +69,7 @@ Sageom.prototype.splitBoard = function() {
 
 
 
-Sageom.prototype.checkElement = function (firstClick, secondClick) {
+Sageom.prototype.checkElement = function (firstClick, secondClick) { // checking if the tile is double-clicked
     if(firstClick.attr('name') === (secondClick.attr('name'))) {
       return true;
     }

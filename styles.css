@@ -76,6 +76,12 @@ body {
       border: none;
   }
 
+
+#landing {
+    text-align: center;
+    margin-top: 20vh;
+}  
+
   
 #start-button:hover {
     background: #9e7838;

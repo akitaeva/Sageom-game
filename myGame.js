@@ -11,135 +11,138 @@ var puzzlePieces = [  //array of images
 
 ];
 
+// var puzzlePieces = puzzles[Math.floor(Math.random()*puzzles.length)];
+// console.log("the picked set of puzzles ", puzzlePieces);
 var original = [];
-    for (var i = 0; i < puzzlePieces.length; i++){
+for (var i = 0; i < puzzlePieces.length; i++) {
         original.push(puzzlePieces[i].position);
     }
-    console.log("the original array: ", original);
+    console.log(puzzlePieces, "the original array: ", original);
 
 var myGame;
+
+
+
 $(document).ready(function(){
     
 
-var Sageom = function(array) {
-        this.pieces = array; //getting access to the array
-        this.pickedPieces = []; // comparison array
-        this.totalClicks = 0;  //measure for win/lose 
+    var Sageom = function(array) {
+            this.pieces = array;    //getting access to the array
+            this.pickedPieces = []; // comparison array
+            this.totalClicks = 0;   //measure for win/lose 
 
 
-    }; //the end of Sageom
+        }; //the end of Sageom
 
 
-Sageom.prototype.drawBoard = function () {   //displaying the board after the start and each move
-    var that  = this;
-   
-    this.pieces.forEach(function(row, i) {
-        row.forEach(function(piece, j){
-            $("#I" + i.toString()+j.toString()).html("<img src=Images/" + that.pieces[i][j].img + " id=" + that.pieces[i][j].position + ">");
-        })
-
-    })
-} //the end of drawBoard function
-
-
-Sageom.prototype.shuffleBoard = function () {  //shuffling the original array
-  
-    var newBoard =  this.pieces;
-  
-    for (var i = this.pieces.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = newBoard[i];
-        newBoard[i] = newBoard[j];
-        newBoard[j] = temp;
-    }
+    Sageom.prototype.drawBoard = function () {   //displaying the board after the start and each move
+        var that  = this;
     
-    this.pieces = newBoard;
-    // console.log(this.pieces[0]);
-
-}; //end of shuffleBoard
-
-Sageom.prototype.splitBoard = function() {
-    var that = this; 
-    this.splitBoard = [];
-    while (that.pieces.length) {
-      this.splitBoard.push(that.pieces.splice(0, 3));
-    }
-    this.pieces = this.splitBoard;
-  }
-
-
-
-Sageom.prototype.checkElement = function (firstClick, secondClick) { // checking if the tile is double-clicked
-    if(firstClick.attr('name') === (secondClick.attr('name'))) {
-      return true;
-    }
-    return false;
-   }; //the end of checkElement
-
-
-Sageom.prototype.checkIfCompleted = function() {
-    var tempArr = [];
-   
-    this.pieces.forEach(function(row, i) {
-        row.forEach(function(piece, j){
-            tempArr.push(piece.position); 
+        this.pieces.forEach(function(row, i) {
+            row.forEach(function(piece, j){
+                $("#I" + i.toString()+j.toString()).html("<img src=Images/" + that.pieces[i][j].img + " id=" + that.pieces[i][j].position + ">");
+            })
 
         })
-
-    })
-    if(JSON.stringify(original)==JSON.stringify(tempArr)){
-        $('#winModal').modal('show');
-        setTimeout(function() {
-
-            location.reload();
-        }, 2000)
-        // $('.row').addClass('blocked');
-    }
+    } //the end of drawBoard function
 
 
-    console.log("tempArr: ", tempArr);
-} //the end of checkIfCompleted function
-
-
-Sageom.prototype.switchPieces = function (pieceToAdd){  //function to switch puzzle tiles
-    this.totalClicks++;
-    $("#clicksLeft").html(25-this.totalClicks);
-
-    if (this.totalClicks<=25) {
-        myGame.pickedPieces.push(pieceToAdd);
+    Sageom.prototype.shuffleBoard = function () {  //shuffling the original array
+    
+        var newBoard =  this.pieces;
+    
+        for (var i = this.pieces.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = newBoard[i];
+            newBoard[i] = newBoard[j];
+            newBoard[j] = temp;
+        }
         
-        if (myGame.pickedPieces.length === 2) {
-            if (this.pickedPieces[0] === this.pickedPieces[1]){
-                this.pickedPieces = [];
-                return;
-            }
+        this.pieces = newBoard;
+        // console.log(this.pieces[0]);
+
+    }; //end of shuffleBoard
+
+    Sageom.prototype.splitBoard = function() {
+        var that = this; 
+        this.splitBoard = [];
+        while (that.pieces.length) {
+        this.splitBoard.push(that.pieces.splice(0, 3));
+        }
+        this.pieces = this.splitBoard;
+    }
+
+
+
+    Sageom.prototype.checkElement = function (firstClick, secondClick) { // checking if the tile is double-clicked
+        if(firstClick.attr('name') === (secondClick.attr('name'))) {
+        return true;
+        }
+        return false;
+    }; //the end of checkElement
+
+
+    Sageom.prototype.checkIfCompleted = function() {
+        var tempArr = [];
     
-            var firstRowNum = this.pickedPieces[0][0];
-            var firstColNum = this.pickedPieces[0][1];
-            var secondRowNum = this.pickedPieces[1][0];
-            var secondColNum = this.pickedPieces[1][1];
-    
-            var temp = this.pieces[firstRowNum][firstColNum];
-            this.pieces[firstRowNum][firstColNum] = this.pieces[secondRowNum][secondColNum];
-            this.pieces[secondRowNum][secondColNum] = temp;
-            this.pickedPieces = [];
-            this.drawBoard();
-            this.checkIfCompleted();
-            $(".piece").removeClass("picked");          
-           
+        this.pieces.forEach(function(row, i) {
+            row.forEach(function(piece, j){
+                tempArr.push(piece.position); 
+
+            })
+
+        })
+        if(JSON.stringify(original)==JSON.stringify(tempArr)){
+            $('#winModal').modal('show');
+            setTimeout(function() {
+
+                location.reload();
+            }, 2000)
+            // $('.row').addClass('blocked');
         }
 
-    }
-    else {
-        $('#loseModal').modal('show');
-        setTimeout(function() {
 
-            location.reload();
-        }, 2000)
-
-    }
+        console.log("tempArr: ", tempArr);
+    } //the end of checkIfCompleted function
 
 
+    Sageom.prototype.switchPieces = function (pieceToAdd){  //function to switch puzzle tiles
+        this.totalClicks++;
+        $("#clicksLeft").html(25-this.totalClicks);
+
+        if (this.totalClicks<=25) {
+            myGame.pickedPieces.push(pieceToAdd);
+            
+            if (myGame.pickedPieces.length === 2) {
+                if (this.pickedPieces[0] === this.pickedPieces[1]){  // !!!place to add the rotation logic
+                    this.pickedPieces = [];
+                    return;
+                }
+        
+                var firstRowNum = this.pickedPieces[0][0];
+                var firstColNum = this.pickedPieces[0][1];
+                var secondRowNum = this.pickedPieces[1][0];
+                var secondColNum = this.pickedPieces[1][1];
+        
+                var temp = this.pieces[firstRowNum][firstColNum];
+                this.pieces[firstRowNum][firstColNum] = this.pieces[secondRowNum][secondColNum];
+                this.pieces[secondRowNum][secondColNum] = temp;
+                this.pickedPieces = [];
+                this.drawBoard();
+                this.checkIfCompleted();
+                $(".piece").removeClass("picked");          
+            
+            }
+
+        }
+        else {
+            $('#loseModal').modal('show');
+            setTimeout(function() {
+
+                location.reload();
+            }, 2000)
+
+        }
 
 }
 
